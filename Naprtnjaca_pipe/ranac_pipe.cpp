@@ -7,7 +7,7 @@
 static char imePrologPrograma[]="ranac.pl";
 using namespace std;
 
-/* kompiliranje: swipl-ld -D_REENTRANT -mthread -o ranac.exe ranac.cpp ranac.pl */
+/* kompiliranje: swipl-ld -D_REENTRANT -mthread -o ranac.exe ranac_pipe.cpp ranac.pl */
 /* primjer unosa 6;4;1;2|16;5;2;5|29 */
 /* rezultat 4,0,1,2*/
 
@@ -53,7 +53,7 @@ void parsirajToken(string& token, vector<double>& vrijednosti)
 	}
 	v = atof(token.substr(0, pos).c_str());
 	vrijednosti.push_back(v);
-	token.erase(0, pos + 1);
+	token.erase(0, pos);
 }
 void parsirajUnos(string& unos, vector< vector<double> >& parametri)
 {
@@ -99,7 +99,6 @@ int main(int argc, char **argv)
 	
 	locale mylocale("");
 	cout.imbue(mylocale);
-
 	
     if( ! PL_initialise(argc,argv))
     {
@@ -122,7 +121,7 @@ int main(int argc, char **argv)
 		parsirajUnos(unos,parametri); 
 		if(parametri.size()!=4) continue; //velicine, vrijednosti, kapacitet, ogranicenja
 		broj_vrijednosti=parametri[0].size();
-		if(broj_vrijednosti<2||parametri[1].size()!=broj_vrijednosti) continue;
+		if(broj_vrijednosti<1||parametri[1].size()!=broj_vrijednosti) continue;
 		/*
 		for(it1=parametri.begin(); it1!=parametri.end(); ++it1)
 		{

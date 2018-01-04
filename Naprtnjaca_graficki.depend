@@ -3250,3 +3250,8 @@
 1446667740 source:d:\foi\logicko programiranje\git\cjelobrojni-ranac\resource.rc
 	"wx/msw/wx.rc"
 
+1515092422 source:d:\foi\logicko programiranje\git\cjelobrojni-ranac\guiframe.cpp
+	"wx/wxprec.h"
+	<wx/wx.h>
+	"GUIFrame.h"
+
