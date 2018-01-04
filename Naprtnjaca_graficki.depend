@@ -3196,3 +3196,57 @@
 
 1493467238 c:\wxwidgets303\lib\gcc_dll\mswu\wx\setup.h
 
+1514971306 source:d:\foi\logicko programiranje\git\cjelobrojni-ranac\wx_pch.h
+	<wx/wxprec.h>
+	<wx/wx.h>
+
+1515024270 source:d:\foi\logicko programiranje\git\cjelobrojni-ranac\naprtnjaca_grafickiapp.cpp
+	"wx_pch.h"
+	"Naprtnjaca_grafickiApp.h"
+	"Naprtnjaca_grafickiMain.h"
+
+1514971306 d:\foi\logicko programiranje\git\cjelobrojni-ranac\wx_pch.h
+	<wx/wxprec.h>
+	<wx/wx.h>
+
+1515069207 d:\foi\logicko programiranje\git\cjelobrojni-ranac\naprtnjaca_grafickiapp.h
+	<wx/app.h>
+	<vector>
+	<string>
+	<chrono>
+	<thread>
+
+1515081902 d:\foi\logicko programiranje\git\cjelobrojni-ranac\naprtnjaca_grafickimain.h
+	"Naprtnjaca_grafickiApp.h"
+	"GUIFrame.h"
+
+1515092422 d:\foi\logicko programiranje\git\cjelobrojni-ranac\guiframe.h
+	<wx/artprov.h>
+	<wx/xrc/xmlres.h>
+	<wx/string.h>
+	<wx/bitmap.h>
+	<wx/image.h>
+	<wx/icon.h>
+	<wx/menu.h>
+	<wx/gdicmn.h>
+	<wx/font.h>
+	<wx/colour.h>
+	<wx/settings.h>
+	<wx/statusbr.h>
+	<wx/dataview.h>
+	<wx/grid.h>
+	<wx/button.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+	<wx/textctrl.h>
+	<wx/statbox.h>
+	<wx/panel.h>
+	<wx/frame.h>
+
+1515083688 source:d:\foi\logicko programiranje\git\cjelobrojni-ranac\naprtnjaca_grafickimain.cpp
+	"wx_pch.h"
+	"Naprtnjaca_grafickiMain.h"
+
+1446667740 source:d:\foi\logicko programiranje\git\cjelobrojni-ranac\resource.rc
+	"wx/msw/wx.rc"
+

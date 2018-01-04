@@ -26,17 +26,33 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	mbar = new wxMenuBar( 0 );
 	fileMenu = new wxMenu();
 	wxMenuItem* menuFileQuit;
-	menuFileQuit = new wxMenuItem( fileMenu, idMenuQuit, wxString( wxT("&Quit") ) + wxT('\t') + wxT("Alt+F4"), wxT("Quit the application"), wxITEM_NORMAL );
+	menuFileQuit = new wxMenuItem( fileMenu, idMenuQuit, wxString( wxT("&Izađi") ) + wxT('\t') + wxT("Alt+F4"), wxT("Quit the application"), wxITEM_NORMAL );
 	fileMenu->Append( menuFileQuit );
 	
-	mbar->Append( fileMenu, wxT("&File") ); 
+	m_menu1 = new wxMenu();
+	wxMenuItem* m_menu1Item = new wxMenuItem( fileMenu, wxID_ANY, wxT("Tablica"), wxEmptyString, wxITEM_NORMAL, m_menu1 );
+	wxMenuItem* m_menuItem4;
+	m_menuItem4 = new wxMenuItem( m_menu1, wxID_ANY, wxString( wxT("&Obriši") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menu1->Append( m_menuItem4 );
+	
+	wxMenuItem* m_menuItem5;
+	m_menuItem5 = new wxMenuItem( m_menu1, wxID_ANY, wxString( wxT("&Po postavci") ) , wxEmptyString, wxITEM_NORMAL );
+	m_menu1->Append( m_menuItem5 );
+	
+	fileMenu->Append( m_menu1Item );
+	
+	wxMenuItem* m_menuItem6;
+	m_menuItem6 = new wxMenuItem( fileMenu, wxID_ANY, wxString( wxT("Iz&računaj") ) , wxEmptyString, wxITEM_NORMAL );
+	fileMenu->Append( m_menuItem6 );
+	
+	mbar->Append( fileMenu, wxT("&Datoteka") ); 
 	
 	helpMenu = new wxMenu();
 	wxMenuItem* menuHelpAbout;
-	menuHelpAbout = new wxMenuItem( helpMenu, idMenuAbout, wxString( wxT("&About") ) + wxT('\t') + wxT("F1"), wxT("Show info about this application"), wxITEM_NORMAL );
+	menuHelpAbout = new wxMenuItem( helpMenu, idMenuAbout, wxString( wxT("&O programu") ) + wxT('\t') + wxT("F1"), wxT("Show info about this application"), wxITEM_NORMAL );
 	helpMenu->Append( menuHelpAbout );
 	
-	mbar->Append( helpMenu, wxT("&Help") ); 
+	mbar->Append( helpMenu, wxT("&Pomoć") ); 
 	
 	this->SetMenuBar( mbar );
 	
@@ -177,6 +193,9 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	this->Connect( wxEVT_ACTIVATE, wxActivateEventHandler( GUIFrame::OnActivate ) );
 	this->Connect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( GUIFrame::OnClose ) );
 	this->Connect( menuFileQuit->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIFrame::OnQuit ) );
+	this->Connect( m_menuItem4->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIFrame::ObrisiTablicu ) );
+	this->Connect( m_menuItem5->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIFrame::UnesiPoPostavci ) );
+	this->Connect( m_menuItem6->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIFrame::Izracunaj ) );
 	this->Connect( menuHelpAbout->GetId(), wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIFrame::OnAbout ) );
 	this->Connect( wxID_ANY, wxEVT_COMMAND_DATAVIEW_SELECTION_CHANGED, wxDataViewEventHandler( GUIFrame::SelectionChanged ) );
 	btnUnesi->Connect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::Unesi ), NULL, this );
@@ -192,6 +211,9 @@ GUIFrame::~GUIFrame()
 	this->Disconnect( wxEVT_ACTIVATE, wxActivateEventHandler( GUIFrame::OnActivate ) );
 	this->Disconnect( wxEVT_CLOSE_WINDOW, wxCloseEventHandler( GUIFrame::OnClose ) );
 	this->Disconnect( idMenuQuit, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIFrame::OnQuit ) );
+	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIFrame::ObrisiTablicu ) );
+	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIFrame::UnesiPoPostavci ) );
+	this->Disconnect( wxID_ANY, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIFrame::Izracunaj ) );
 	this->Disconnect( idMenuAbout, wxEVT_COMMAND_MENU_SELECTED, wxCommandEventHandler( GUIFrame::OnAbout ) );
 	this->Disconnect( wxID_ANY, wxEVT_COMMAND_DATAVIEW_SELECTION_CHANGED, wxDataViewEventHandler( GUIFrame::SelectionChanged ) );
 	btnUnesi->Disconnect( wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler( GUIFrame::Unesi ), NULL, this );

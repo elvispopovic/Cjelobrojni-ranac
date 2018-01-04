@@ -45,6 +45,7 @@ class GUIFrame : public wxFrame
 	protected:
 		wxMenuBar* mbar;
 		wxMenu* fileMenu;
+		wxMenu* m_menu1;
 		wxMenu* helpMenu;
 		wxStatusBar* statusBar;
 		wxDataViewListCtrl* tablica;
@@ -68,13 +69,13 @@ class GUIFrame : public wxFrame
 		virtual void OnActivate( wxActivateEvent& event ) { event.Skip(); }
 		virtual void OnClose( wxCloseEvent& event ) { event.Skip(); }
 		virtual void OnQuit( wxCommandEvent& event ) { event.Skip(); }
+		virtual void ObrisiTablicu( wxCommandEvent& event ) { event.Skip(); }
+		virtual void UnesiPoPostavci( wxCommandEvent& event ) { event.Skip(); }
+		virtual void Izracunaj( wxCommandEvent& event ) { event.Skip(); }
 		virtual void OnAbout( wxCommandEvent& event ) { event.Skip(); }
 		virtual void SelectionChanged( wxDataViewEvent& event ) { event.Skip(); }
 		virtual void Unesi( wxCommandEvent& event ) { event.Skip(); }
 		virtual void Obrisi( wxCommandEvent& event ) { event.Skip(); }
-		virtual void ObrisiTablicu( wxCommandEvent& event ) { event.Skip(); }
-		virtual void UnesiPoPostavci( wxCommandEvent& event ) { event.Skip(); }
-		virtual void Izracunaj( wxCommandEvent& event ) { event.Skip(); }
 		
 	
 	public:
