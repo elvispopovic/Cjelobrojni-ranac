@@ -3216,11 +3216,11 @@
 	<chrono>
 	<thread>
 
-1515081902 d:\foi\logicko programiranje\git\cjelobrojni-ranac\naprtnjaca_grafickimain.h
+1515166048 d:\foi\logicko programiranje\git\cjelobrojni-ranac\naprtnjaca_grafickimain.h
 	"Naprtnjaca_grafickiApp.h"
 	"GUIFrame.h"
 
-1515092422 d:\foi\logicko programiranje\git\cjelobrojni-ranac\guiframe.h
+1515164677 d:\foi\logicko programiranje\git\cjelobrojni-ranac\guiframe.h
 	<wx/artprov.h>
 	<wx/xrc/xmlres.h>
 	<wx/string.h>
@@ -3243,14 +3243,14 @@
 	<wx/panel.h>
 	<wx/frame.h>
 
-1515083688 source:d:\foi\logicko programiranje\git\cjelobrojni-ranac\naprtnjaca_grafickimain.cpp
+1515166577 source:d:\foi\logicko programiranje\git\cjelobrojni-ranac\naprtnjaca_grafickimain.cpp
 	"wx_pch.h"
 	"Naprtnjaca_grafickiMain.h"
 
 1446667740 source:d:\foi\logicko programiranje\git\cjelobrojni-ranac\resource.rc
 	"wx/msw/wx.rc"
 
-1515092422 source:d:\foi\logicko programiranje\git\cjelobrojni-ranac\guiframe.cpp
+1515164677 source:d:\foi\logicko programiranje\git\cjelobrojni-ranac\guiframe.cpp
 	"wx/wxprec.h"
 	<wx/wx.h>
 	"GUIFrame.h"

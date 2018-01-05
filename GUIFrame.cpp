@@ -70,6 +70,7 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	kolona_naziv = tablica->AppendTextColumn( wxT("Naziv") );
 	kolona_velicina = tablica->AppendTextColumn( wxT("Veličina") );
 	kolicina_vrijednost = tablica->AppendTextColumn( wxT("Vrijednost") );
+	kolona_dostupno = tablica->AppendTextColumn( wxT("Dostupno") );
 	kolona_ukljuceno = tablica->AppendToggleColumn( wxT("Odabir") );
 	bSizer2->Add( tablica, 1, wxALL|wxEXPAND, 5 );
 	
@@ -80,7 +81,7 @@ GUIFrame::GUIFrame( wxWindow* parent, wxWindowID id, const wxString& title, cons
 	grUnos = new wxGrid( this, wxID_ANY, wxDefaultPosition, wxSize( -1,-1 ), 0 );
 	
 	// Grid
-	grUnos->CreateGrid( 1, 3 );
+	grUnos->CreateGrid( 1, 4 );
 	grUnos->EnableEditing( true );
 	grUnos->EnableGridLines( true );
 	grUnos->EnableDragGridSize( false );

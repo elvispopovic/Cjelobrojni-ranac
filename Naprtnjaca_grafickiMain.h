@@ -22,6 +22,7 @@ struct Element
     char naziv[16];
     double velicina;
     double vrijednost;
+    long dostupno;
     int kolicina;
 };
 

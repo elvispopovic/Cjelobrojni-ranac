@@ -72,13 +72,20 @@ void parsirajUnos(string& unos, vector< vector<double> >& parametri)
 	parsirajToken(token,vrijednosti);
 	parametri.push_back(vrijednosti);
 	
-	if(parametri.size()!=3||parametri[2].size()==0) return;
+	if(parametri.size()<3||parametri[2].size()==0) return;
 	vrijednosti.clear();
-	for(pos=0; pos<parametri[0].size(); pos++)
-		if(parametri[0][pos]==0.0)
-			vrijednosti.push_back(0.0);
-		else
-			vrijednosti.push_back(parametri[2][0]/parametri[0][pos]);
+	if(parametri.size()==3)
+		for(pos=0; pos<parametri[0].size(); pos++)
+			if(parametri[0][pos]==0.0)
+				vrijednosti.push_back(0.0);
+			else
+				vrijednosti.push_back(parametri[2][0]/parametri[0][pos]);
+	else
+		for(pos=0; pos<parametri[0].size(); pos++)
+			if(parametri[0][pos]==0.0)
+				vrijednosti.push_back(0.0);
+			else
+				vrijednosti.push_back(parametri[3][pos]);
 	parametri.push_back(vrijednosti);
 }
 
@@ -119,7 +126,7 @@ int main(int argc, char **argv)
 		if(!strcmp(unos.c_str(),"\\q")||!strcmp(unos.c_str(),"\\quit"))
 			break;
 		parsirajUnos(unos,parametri); 
-		if(parametri.size()!=4) continue; //velicine, vrijednosti, kapacitet, ogranicenja
+		if(parametri.size()<3) continue; //velicine, vrijednosti, kapacitet, ogranicenja
 		broj_vrijednosti=parametri[0].size();
 		if(broj_vrijednosti<1||parametri[1].size()!=broj_vrijednosti) continue;
 		/*

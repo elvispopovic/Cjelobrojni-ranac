@@ -23,7 +23,7 @@ enum wxbuildinfoformat {
 
 using namespace std;
 
-Element postavka[] = {{"x(1)","Element 1",6,16},{"x(2)","Element 2",4,5},{"x(3)","Element 3",1,2},{"x(4)","Element 4",2,5}};
+Element postavka[] = {{"x(1)","Element 1",6,16,3},{"x(2)","Element 2",4,5,10},{"x(3)","Element 3",1,2,4},{"x(4)","Element 4",2,5,10}};
 
 wxString wxbuildinfo(wxbuildinfoformat format)
 {
@@ -61,6 +61,7 @@ Naprtnjaca_grafickiFrame::Naprtnjaca_grafickiFrame(wxFrame *frame)
     grUnos->SetColLabelValue(0,wxString(wxT("Naziv")));
     grUnos->SetColLabelValue(1,wxString(wxT("Veličina")));
     grUnos->SetColLabelValue(2,wxString(wxT("Vrijednost")));
+    grUnos->SetColLabelValue(3,wxString(wxT("Dostupno")));
     btnObrisi->Enable(false);
 
 
@@ -154,14 +155,14 @@ void Naprtnjaca_grafickiFrame::SelectionChanged( wxDataViewEvent& event )
     {
         btnUnesi->SetLabel("Unesi");
         btnObrisi->Enable(false);
-        for(i=0; i<3; i++)
+        for(i=0; i<4; i++)
             grUnos->SetCellValue(0,i,"");
     }
     else
     {
         btnUnesi->SetLabel(wxT("Osvježi"));
         btnObrisi->Enable(true);
-        for(i=1; i<4; i++)
+        for(i=1; i<5; i++)
         {
             tablica->GetValue(value,j,i);
             grUnos->SetCellValue(0,i-1,value);
@@ -184,7 +185,7 @@ void Naprtnjaca_grafickiFrame::Unesi( wxCommandEvent& event )
     if(upis.empty())
         return;
     redak.push_back(wxVariant(upis));
-    for(i=1; i<3; i++)
+    for(i=1; i<4; i++)
     {
         if(!grUnos->GetCellValue(0,i).ToDouble(&v)){ v=1.0; };
         redak.push_back(wxVariant(v));
@@ -194,7 +195,7 @@ void Naprtnjaca_grafickiFrame::Unesi( wxCommandEvent& event )
     if((j=tablica->GetSelectedRow())==wxNOT_FOUND)
         tablica->AppendItem(redak);
     else
-        for(i=1; i<4; i++)
+        for(i=1; i<5; i++)
             tablica->SetValue(wxVariant(redak[i]),j,i);
 }
 
@@ -223,7 +224,7 @@ void Naprtnjaca_grafickiFrame::ObrisiTablicu( wxCommandEvent& event )
     if(rezultat==IDNO)
         return;
     tablica->DeleteAllItems();
-    for(i=0; i<3; i++)
+    for(i=0; i<4; i++)
         grUnos->SetCellValue(0,i,"");
 }
 
@@ -247,6 +248,7 @@ void Naprtnjaca_grafickiFrame::UnesiPoPostavci( wxCommandEvent& event )
         redak.push_back(wxVariant(postavka[i].naziv));
         redak.push_back(wxVariant(postavka[i].velicina));
         redak.push_back(wxVariant(postavka[i].vrijednost));
+        redak.push_back(wxVariant(postavka[i].dostupno));
         redak.push_back(wxVariant(true));
         tablica->AppendItem(redak);
     }
@@ -270,7 +272,7 @@ void Naprtnjaca_grafickiFrame::Izracunaj( wxCommandEvent& event )
     brojIzabranih=0;
     for(j=0; j<brojRedaka; j++)
     {
-        tablica->GetValue(vari,j,4);
+        tablica->GetValue(vari,j,5);
         if(vari)
         {
             brojIzabranih++;
@@ -280,6 +282,7 @@ void Naprtnjaca_grafickiFrame::Izracunaj( wxCommandEvent& event )
             strcpy(e.naziv,tablica->GetTextValue(j,1).c_str());
             tablica->GetTextValue(j,2).ToDouble(&(e.velicina));
             tablica->GetTextValue(j,3).ToDouble(&(e.vrijednost));
+            tablica->GetTextValue(j,4).ToLong(&(e.dostupno));
             elementi.push_back(e);
         }
     }
@@ -297,7 +300,12 @@ void Naprtnjaca_grafickiFrame::Izracunaj( wxCommandEvent& event )
             upis+=wxString::Format("%lf;",elementi[j].vrijednost);
         else
             upis+=wxString::Format("%lf|",elementi[j].vrijednost);
-    upis.Append(wxString::Format("%s\n",tcKapacitet->GetLineText(0)));
+    upis.Append(wxString::Format("%s|",tcKapacitet->GetLineText(0)));
+    for(j=0; j<elementi.size(); j++)
+        if(j<elementi.size()-1)
+            upis+=wxString::Format("%d;",elementi[j].dostupno);
+        else
+            upis+=wxString::Format("%d\n",elementi[j].dostupno);
 
     if(OcistiCjevovod()==false)
         Destroy();
@@ -328,7 +336,7 @@ void Naprtnjaca_grafickiFrame::Izracunaj( wxCommandEvent& event )
     if(dwProcitano!=0)
     {
         ReadFile(hCjevovodCitanje,medjuspremnik,2047,&dwProcitano,NULL);
-        //tcRjesenje->AppendText(medjuspremnik);
+        tcRjesenje->AppendText(medjuspremnik);
         upis.Clear();
         upis.Append(medjuspremnik,dwProcitano);
         ParsirajRjesenje(upis,rjesenje);

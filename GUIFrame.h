@@ -53,6 +53,7 @@ class GUIFrame : public wxFrame
 		wxDataViewColumn* kolona_naziv;
 		wxDataViewColumn* kolona_velicina;
 		wxDataViewColumn* kolicina_vrijednost;
+		wxDataViewColumn* kolona_dostupno;
 		wxDataViewColumn* kolona_ukljuceno;
 		wxGrid* grUnos;
 		wxButton* btnUnesi;
